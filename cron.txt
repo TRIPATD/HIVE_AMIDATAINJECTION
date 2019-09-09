@@ -1,0 +1,38 @@
+################################
+#  AMI PRODUCTION - APPORCHID  #
+################################
+
+################################
+# EVERY HOUR TRIGGER
+################################
+
+
+#hourlyWV
+15 6-19 * 1-12 * java -Dami.config.file=/apporchid/ami_jobs/application-prod.properties -Dami.isLoadHourlyDataWV=true -Dami.isLoadDailyData=false -Dami.isRunHighUsageAlerts=false -Dami.isRunLeakAlerts=false -Dami.isUpdateMeterNextRead=false -Dsun.security.krb5.debug=true -DskipDefaults=false -Dhadoop.home.dir=java.io.tmpdir -Djava.net.debug=true -Djava.security.krb5.conf=/apporchid/ami_jobs/.hive-jdbc-prod/krb5.ini -jar /apporchid/ami_jobs/ami-data.jar >> /apporchid/ami_jobs/logs/crontab.hourlyWV-prod.log 2>&1 &
+
+
+#hourly
+45 6-19 * 1-12 * java -Dami.config.file=/apporchid/ami_jobs/application-prod.properties -Dami.isLoadHourlyData=true -Dami.isLoadDailyData=false -Dami.isRunHighUsageAlerts=false -Dami.isRunLeakAlerts=false -Dami.isUpdateMeterNextRead=false -Dsun.security.krb5.debug=true -DskipDefaults=false -Dhadoop.home.dir=java.io.tmpdir -Djava.net.debug=true -Djava.security.krb5.conf=/apporchid/ami_jobs/.hive-jdbc-prod/krb5.ini -jar /apporchid/ami_jobs/ami-data.jar >> /apporchid/ami_jobs/logs/crontab.hourly-prod.log 2>&1 &
+
+###############################
+# ONCE IN A DAY GOES HERE     #
+###############################
+
+#dailyWV
+15 06 * 1-12 * java -Dami.config.file=/apporchid/ami_jobs/application-prod.properties -Dami.isLoadHourlyData=false -Dami.isLoadDailyDataWV=true -Dami.isRunHighUsageAlerts=false -Dami.isRunLeakAlerts=false -Dami.isUpdateMeterNextRead=false -Dsun.security.krb5.debug=true -DskipDefaults=false -Dhadoop.home.dir=java.io.tmpdir -Djava.net.debug=true -Djava.security.krb5.conf=/apporchid/ami_jobs/.hive-jdbc-prod/krb5.ini -jar /apporchid/ami_jobs/ami-data.jar >> /apporchid/ami_jobs/logs/crontab.dailyWV-prod.log 2>&1 &
+
+
+#daily
+45 06 * 1-12 * java -Dami.config.file=/apporchid/ami_jobs/application-prod.properties -Dami.isLoadHourlyData=false -Dami.isLoadDailyData=true -Dami.isRunHighUsageAlerts=false -Dami.isRunLeakAlerts=false -Dami.isUpdateMeterNextRead=false -Dsun.security.krb5.debug=true -DskipDefaults=false -Dhadoop.home.dir=java.io.tmpdir -Djava.net.debug=true -Djava.security.krb5.conf=/apporchid/ami_jobs/.hive-jdbc-prod/krb5.ini -jar /apporchid/ami_jobs/ami-data.jar >> /apporchid/ami_jobs/logs/crontab.daily-prod.log 2>&1 &
+
+#daily_meter_next_read
+45 22 * 1-12 * java -Dami.config.file=/apporchid/ami_jobs/application-prod.properties -Dami.isLoadHourlyData=false -Dami.isLoadDailyData=false -Dami.isRunHighUsageAlerts=false -Dami.isRunLeakAlerts=false -Dami.isUpdateMeterNextRead=true -Dsun.security.krb5.debug=true -DskipDefaults=false -Dhadoop.home.dir=java.io.tmpdir -Djava.net.debug=true -Djava.security.krb5.conf=/apporchid/ami_jobs/.hive-jdbc-prod/krb5.ini -jar /apporchid/ami_jobs/ami-data.jar >> /apporchid/ami_jobs/logs/crontab.daily_meter_next_read-prod.log 2>&1 &
+
+#daily_usage_prediction
+00 23 * 1-12 * java -Dami.config.file=/apporchid/ami_jobs/application-prod.properties -Dami.isLoadHourlyData=false -Dami.isLoadDailyData=false -Dami.isRunHighUsageAlerts=false -Dami.isRunLeakAlerts=false -Dami.isUpdateMeterNextRead=false -Dami.isRunUsagePrediction=true -Dsun.security.krb5.debug=true -DskipDefaults=false -Dhadoop.home.dir=java.io.tmpdir -Djava.net.debug=true -Djava.security.krb5.conf=/apporchid/ami_jobs/.hive-jdbc-prod/krb5.ini -jar /apporchid/ami_jobs/ami-data.jar >> /apporchid/ami_jobs/logs/crontab.daily_usage_prediction-prod.log 2>&1 &
+
+#high_usage_hourly_prod
+15 22 * 1-12 * java -Dami.config.file=/apporchid/ami_jobs/application-prod.properties -Dami.isLoadHourlyData=false -Dami.isLoadDailyData=false -Dami.isRunHighUsageAlerts=true -Dami.isRunLeakAlerts=false -Dami.isUpdateMeterNextRead=false -Dsun.security.krb5.debug=true -DskipDefaults=false -Dhadoop.home.dir=java.io.tmpdir -Djava.net.debug=true -Djava.security.krb5.conf=/apporchid/ami_jobs/.hive-jdbc-prod/krb5.ini -jar /apporchid/ami_jobs/ami-data.jar >> /apporchid/ami_jobs/logs/crontab.daily_high_usage-prod.log 2>&1 &
+
+#leak_alerts_hourly_prod
+45 21 * 1-12 * java -Dami.config.file=/apporchid/ami_jobs/application-prod.properties -Dami.isLoadHourlyData=false -Dami.isLoadDailyData=false -Dami.isRunHighUsageAlerts=false -Dami.isRunLeakAlerts=true -Dami.isUpdateMeterNextRead=false -Dsun.security.krb5.debug=true -DskipDefaults=false -Dhadoop.home.dir=java.io.tmpdir -Djava.net.debug=true -Djava.security.krb5.conf=/apporchid/ami_jobs/.hive-jdbc-prod/krb5.ini -jar /apporchid/ami_jobs/ami-data.jar >> /apporchid/ami_jobs/logs/crontab.daily_leak_alerts-prod.log 2>&1 &
