@@ -64,6 +64,7 @@ public class LoadAMIData
   {
     if (System.getProperty("skipDefaults", "false").matches("true|TRUE|True|1|hanji|yes|Yes|YES")) {
       System.setProperty("HADOOP_HOME", "C:\\hadoop\\");
+      
       System.setProperty("hadoop.home.dir", "C:\\hadoop\\");
       System.setProperty("java.security.krb5.conf", "C:\\programs\\java\\hive-jdbc\\krb5.ini");
     }
